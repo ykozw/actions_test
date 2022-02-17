@@ -1,0 +1,22 @@
+name: linux-build
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+jobs:
+  linux-build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+          
+      - name: build
+        run: |
+          mkdir build/
+          cd build/
+          cmake ..
+          cmake --build .
